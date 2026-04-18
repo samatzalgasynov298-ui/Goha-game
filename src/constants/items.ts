@@ -13,7 +13,7 @@ export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-1', 
     name: 'Теодор', 
-    image: '/img/photo_baga.jpg', 
+    image: '/img/photo_baha.jpg', 
     rarity: 'Common', 
     price: 150, 
     sellPrice: 75 
@@ -181,7 +181,7 @@ export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-22', 
     name: 'Саматпро228', 
-    image: '/img/photo_2026-04-18_05-19-34Samat.jpg', 
+    image: '/photo_2026-04-18_05-19-34Samat.jpg', 
     rarity: 'Legendary', 
     price: 5000, 
     sellPrice: 2500 
