@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Comfortaa", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Montserrat", sans-serif;
+}
+
+body {
+  @apply font-sans;
+}
+
+h1, h2, h3, h4, .font-display {
+  @apply font-display;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.birthday-gradient {
+  background: linear-gradient(135deg, #db6c7f 0%, #ffc3a0 100%);
+}
+
+.glass-panel {
+  @apply bg-white/20 backdrop-blur-md border border-white/30 rounded-3xl;
+}
+
+.game-card {
+  @apply relative border-8 border-white rounded-[2rem] overflow-hidden shadow-2xl;
+}
