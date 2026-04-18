@@ -175,28 +175,28 @@ export const Uno: React.FC = () => {
   }, [turn, botHand, activeColor, discardPile, gameOver, showColorPicker]);
 
   return (
-    <div className="w-full flex flex-col items-center bg-[#1a0a1a] p-4 md:p-8 rounded-[3rem] border-2 border-pink-500/10 backdrop-blur-3xl min-h-[700px] relative overflow-hidden font-sans">
+    <div className="w-full flex flex-col items-center bg-[#1a0a1a] p-4 md:p-8 rounded-3xl md:rounded-[3rem] border-2 border-pink-500/10 backdrop-blur-3xl min-h-auto lg:min-h-[700px] relative overflow-hidden font-sans">
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-pink-500/50 to-transparent" />
       
-      <div className="w-full flex justify-between items-center mb-10 px-4">
+      <div className="w-full flex justify-between items-center mb-6 lg:mb-10 px-2 lg:px-4">
         <div className="flex flex-col">
-          <h2 className="text-3xl font-black text-pink-500 italic leading-none">UNO</h2>
-          <span className="text-[10px] text-pink-500/40 uppercase font-black mt-1">Goha Edition</span>
+          <h2 className="text-xl lg:text-3xl font-black text-pink-500 italic leading-none">UNO</h2>
+          <span className="text-[8px] lg:text-[10px] text-pink-500/40 uppercase font-black mt-1">Goha Edition</span>
         </div>
         
-        <div className="flex gap-6 items-center">
+        <div className="flex gap-4 lg:gap-6 items-center">
           <div className="flex flex-col items-end">
-            <span className="text-[10px] text-white/30 uppercase font-bold">Bot Hand</span>
-            <div className="flex gap-1 mt-1">
+            <span className="text-[8px] lg:text-[10px] text-white/30 uppercase font-bold">Bot</span>
+            <div className="flex gap-0.5 lg:gap-1 mt-1">
               {Array.from({ length: botHand.length }).map((_, i) => (
-                <div key={i} className="w-2 h-4 bg-pink-900 rounded-sm border border-pink-500/20" />
+                <div key={i} className="w-1.5 h-3 lg:w-2 lg:h-4 bg-pink-900 rounded-sm border border-pink-500/20" />
               ))}
             </div>
-            {botHand.length === 1 && !unoState.bot && <AlertCircle size={14} className="text-pink-500 mt-1 animate-pulse" />}
+            {botHand.length === 1 && !unoState.bot && <AlertCircle size={12} className="text-pink-500 mt-1 animate-pulse" />}
           </div>
-          <div className="h-10 w-[1px] bg-white/5" />
+          <div className="h-8 lg:h-10 w-[1px] bg-white/5" />
           <div className="flex flex-col items-center">
-             <div className={`w-10 h-10 rounded-xl shadow-lg border-2 border-white/10 ${
+             <div className={`w-8 h-8 lg:w-10 lg:h-10 rounded-lg lg:rounded-xl shadow-lg border-2 border-white/10 ${
                activeColor === 'Red' ? 'bg-red-500 shadow-red-500/20' :
                activeColor === 'Blue' ? 'bg-blue-500 shadow-blue-500/20' :
                activeColor === 'Green' ? 'bg-green-500 shadow-green-500/20' :
@@ -208,21 +208,21 @@ export const Uno: React.FC = () => {
       </div>
 
       {/* Play Area */}
-      <div className="flex-1 w-full flex flex-col items-center justify-center gap-12 py-10">
-        <div className="flex gap-12 items-center">
+      <div className="flex-1 w-full flex flex-col items-center justify-center gap-8 lg:gap-12 py-6 lg:py-10">
+        <div className="flex gap-8 lg:gap-12 items-center">
           {/* Deck */}
           <div 
             onClick={handleDraw}
-            className="group relative w-24 h-36 bg-pink-600 rounded-2xl border-4 border-white flex items-center justify-center cursor-pointer hover:-translate-y-2 transition-all shadow-2xl shadow-pink-600/30"
+            className="group relative w-20 h-28 lg:w-24 lg:h-36 bg-pink-600 rounded-xl lg:rounded-2xl border-2 lg:border-4 border-white flex items-center justify-center cursor-pointer hover:-translate-y-2 transition-all shadow-2xl shadow-pink-600/30"
           >
-            <div className="absolute inset-2 border-2 border-white/20 rounded-xl flex items-center justify-center">
-               <span className="text-white font-black text-2xl rotate-45 opacity-20 italic">UNO</span>
+            <div className="absolute inset-1 lg:inset-2 border lg:border-2 border-white/20 rounded-lg lg:rounded-xl flex items-center justify-center">
+               <span className="text-white font-black text-sm lg:text-2xl rotate-45 opacity-20 italic">UNO</span>
             </div>
-            <Layers className="text-white" size={32} />
+            <Layers className="text-white w-6 h-6 lg:w-8 lg:h-8" />
           </div>
 
           {/* Discard Pile */}
-          <div className="relative w-24 h-36 bg-slate-900 rounded-2xl border-4 border-white flex items-center justify-center shadow-2xl overflow-hidden">
+          <div className="relative w-20 h-28 lg:w-24 lg:h-36 bg-slate-900 rounded-xl lg:rounded-2xl border-2 lg:border-4 border-white flex items-center justify-center shadow-2xl overflow-hidden">
             {discardPile.length > 0 && (
               <CardComponent card={discardPile[discardPile.length - 1]} />
             )}
@@ -230,9 +230,9 @@ export const Uno: React.FC = () => {
           </div>
         </div>
 
-        <div className={`px-6 py-2 rounded-full text-xs font-black uppercase tracking-tighter
+        <div className={`px-4 lg:px-6 py-1.5 lg:py-2 rounded-full text-[10px] lg:text-xs font-black uppercase tracking-tighter
           ${turn === 'player' ? 'bg-pink-500 text-white shadow-lg shadow-pink-500/20' : 'bg-slate-800 text-white/30'}`}>
-          {turn === 'player' ? 'Your Turn' : 'Bot is thinking...'}
+          {turn === 'player' ? 'Your Turn' : 'Bot thinking...'}
         </div>
       </div>
 
@@ -283,13 +283,13 @@ export const Uno: React.FC = () => {
           </button>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-[-20px] max-w-full overflow-x-auto pb-4 px-10">
+        <div className="flex flex-wrap justify-center gap-[-15px] lg:gap-[-20px] max-w-full overflow-x-auto pb-4 px-4 lg:px-10 scrollbar-hide">
           {playerHand.map((card, i) => (
             <motion.div 
               key={card.id}
               whileHover={{ y: -40, zIndex: 100, scale: 1.1 }}
               onClick={() => turn === 'player' && !showColorPicker && playCard(card, true)}
-              className="-ml-10 first:ml-0 cursor-pointer relative"
+              className="-ml-8 lg:-ml-10 first:ml-0 cursor-pointer relative"
             >
               <CardComponent card={card} interactive />
             </motion.div>
@@ -332,16 +332,16 @@ const CardComponent: React.FC<{ card: Card; interactive?: boolean }> = ({ card, 
   };
 
   return (
-    <div className={`w-24 h-36 rounded-2xl border-4 flex flex-col items-center justify-between p-3 shadow-2xl select-none transition-all
+    <div className={`w-16 h-24 lg:w-24 lg:h-36 rounded-xl lg:rounded-2xl border-2 lg:border-4 flex flex-col items-center justify-between p-1.5 lg:p-3 shadow-2xl select-none transition-all
       ${getColors()} ${interactive ? 'hover:shadow-pink-500/50' : ''}`}>
       
-      <span className="self-start text-white font-black text-base drop-shadow-md">{card.value}</span>
+      <span className="self-start text-white font-black text-[10px] lg:text-base drop-shadow-md leading-none">{card.value}</span>
       
-      <div className="w-16 h-20 bg-white/20 backdrop-blur-sm rounded-full border-2 border-white/30 flex items-center justify-center rotate-12 shadow-inner">
-        <span className="text-white font-black text-3xl italic drop-shadow-lg">{card.value}</span>
+      <div className="w-10 h-14 lg:w-16 lg:h-20 bg-white/20 backdrop-blur-sm rounded-full border lg:border-2 border-white/30 flex items-center justify-center rotate-12 shadow-inner">
+        <span className="text-white font-black text-lg lg:text-3xl italic drop-shadow-lg">{card.value}</span>
       </div>
 
-      <span className="self-end text-white font-black text-base rotate-180 drop-shadow-md">{card.value}</span>
+      <span className="self-end text-white font-black text-[10px] lg:text-base rotate-180 drop-shadow-md leading-none">{card.value}</span>
     </div>
   );
 };

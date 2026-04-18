@@ -44,27 +44,27 @@ export default function App() {
       </div>
 
       {/* Navigation Header */}
-      <nav className="sticky top-0 z-40 bg-[#020617]/80 backdrop-blur-xl border-b border-white/5 px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3 cursor-pointer" onClick={() => setCurrentView('hub')}>
-          <div className="w-10 h-10 bg-pink-600 rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(236,72,153,0.5)]">
-            <LayoutGrid size={20} />
+      <nav className="sticky top-0 z-40 bg-[#020617]/80 backdrop-blur-xl border-b border-white/5 px-4 md:px-6 py-4 flex items-center justify-between">
+        <div className="flex items-center gap-2 md:gap-3 cursor-pointer" onClick={() => setCurrentView('hub')}>
+          <div className="w-8 h-8 md:w-10 md:h-10 bg-pink-600 rounded-lg md:rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(236,72,153,0.5)]">
+            <LayoutGrid size={16} className="md:w-5 md:h-5" />
           </div>
-          <span className="font-display font-black text-xl tracking-tighter uppercase">Goha Hub</span>
+          <span className="font-display font-black text-lg md:text-xl tracking-tighter uppercase whitespace-nowrap">Goha Hub</span>
         </div>
 
-        <div className="flex items-center gap-4">
-          <div className="bg-white/5 border border-white/10 px-4 py-2 rounded-2xl flex items-center gap-2 shadow-inner">
-            <Coins className="text-yellow-400" size={18} />
-            <span className="font-display font-black text-lg tabular-nums tracking-tighter">{coins}</span>
+        <div className="flex items-center gap-2 md:gap-4">
+          <div className="bg-white/5 border border-white/10 px-3 md:px-4 py-1.5 md:py-2 rounded-xl md:rounded-2xl flex items-center gap-2 shadow-inner">
+            <Coins className="text-yellow-400" size={16} />
+            <span className="font-display font-black text-base md:text-lg tabular-nums tracking-tighter">{coins}</span>
           </div>
           <button 
             onClick={() => setCurrentView('inventory')}
-            className={`p-2.5 border rounded-xl transition-all relative
+            className={`p-2 md:p-2.5 border rounded-lg md:rounded-xl transition-all relative
               ${currentView === 'inventory' ? 'bg-pink-600 border-pink-500 shadow-[0_0_15px_rgba(236,72,153,0.4)]' : 'bg-white/5 border-white/10 hover:bg-white/10'}`}
           >
-            <BoxIcon size={20} />
+            <BoxIcon size={18} className="md:w-5 md:h-5" />
             {inventory.length > 0 && (
-              <span className="absolute -top-1 -right-1 w-5 h-5 bg-white text-pink-600 text-[10px] font-black flex items-center justify-center rounded-full border-2 border-[#020617]">
+              <span className="absolute -top-1 -right-1 w-4 h-4 md:w-5 md:h-5 bg-white text-pink-600 text-[8px] md:text-[10px] font-black flex items-center justify-center rounded-full border-2 border-[#020617]">
                 {inventory.length}
               </span>
             )}
@@ -72,7 +72,7 @@ export default function App() {
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto p-6 md:p-12">
+      <main className="max-w-7xl mx-auto p-4 md:p-12">
         <AnimatePresence mode="wait">
           {currentView === 'hub' && (
             <motion.div 
@@ -83,24 +83,24 @@ export default function App() {
               className="space-y-12"
             >
               {/* Hero Banner */}
-              <div className="relative glass-panel p-8 md:p-16 overflow-hidden flex flex-col items-center text-center">
+              <div className="relative glass-panel p-6 md:p-16 overflow-hidden flex flex-col items-center text-center">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 via-cyan-500 to-pink-500" />
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <h1 className="text-5xl md:text-8xl font-display font-black mb-4 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 leading-none">
+                  <h1 className="text-4xl sm:text-5xl md:text-8xl font-display font-black mb-4 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 leading-none px-4">
                     HAPPY BIRTHDAY, GOHA! 🎂
                   </h1>
-                  <p className="text-pink-500 font-display font-bold text-xl uppercase tracking-[0.3em] mb-12">Level Up: +1 Year of Awesomeness</p>
+                  <p className="text-pink-500 font-display font-bold text-sm sm:text-xl uppercase tracking-[0.1em] sm:tracking-[0.3em] mb-8 sm:mb-12">Level Up: +1 Year of Awesomeness</p>
                   
                   <div className="flex flex-wrap justify-center gap-4">
                     <button 
                       onClick={() => setCurrentView('case')}
-                      className="px-12 py-5 bg-pink-600 rounded-3xl font-black text-xl flex items-center gap-3 shadow-[0_0_30px_rgba(236,72,153,0.5)] hover:bg-pink-500 transition-all active:scale-95 group"
+                      className="px-8 sm:px-12 py-4 sm:py-5 bg-pink-600 rounded-2xl sm:rounded-3xl font-black text-base sm:text-xl flex items-center gap-3 shadow-[0_0_30px_rgba(236,72,153,0.5)] hover:bg-pink-500 transition-all active:scale-95 group"
                     >
-                      <Package size={24} className="group-hover:rotate-12 transition-transform" />
+                      <Package size={20} className="sm:w-6 sm:h-6 group-hover:rotate-12 transition-transform" />
                       CASE SIMULATOR
                     </button>
                   </div>
@@ -171,7 +171,7 @@ export default function App() {
           {currentView === 'inventory' && (
             <motion.div key="inventory" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }}>
               <Header label="Your Loot Box" onClose={() => setCurrentView('hub')} />
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
                 {inventory.length > 0 ? inventory.map((item, i) => (
                   <div key={i} className="glass-panel p-3 flex flex-col items-center border-white/5 group relative overflow-hidden">
                     <ItemImage 
@@ -212,13 +212,21 @@ export default function App() {
           {['chess', 'uno', 'durak', 'tetris', 'catch', 'flappy'].includes(currentView) && (
             <motion.div key={currentView} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full flex flex-col items-center">
               <Header label={`${currentView.toUpperCase()}`} onClose={() => setCurrentView('hub')} />
-              <div className="w-full max-w-4xl">
+              <div className="w-full max-w-4xl flex flex-col items-center">
                 {currentView === 'chess' && <ChessGame />}
                 {currentView === 'uno' && <Uno />}
                 {currentView === 'durak' && <Durak />}
                 {currentView === 'tetris' && <Tetris />}
-                {currentView === 'catch' && <div className="game-card h-[600px] w-[400px] mx-auto"><CatchGame /></div>}
-                {currentView === 'flappy' && <div className="game-card h-[600px] w-[400px] mx-auto"><FlappyGame onGameOver={() => {}} /></div>}
+                {currentView === 'catch' && (
+                  <div className="game-card h-[500px] sm:h-[600px] w-full max-w-[400px]">
+                    <CatchGame />
+                  </div>
+                )}
+                {currentView === 'flappy' && (
+                  <div className="game-card h-[500px] sm:h-[600px] w-full max-w-[400px]">
+                    <FlappyGame onGameOver={() => {}} />
+                  </div>
+                )}
               </div>
             </motion.div>
           )}
@@ -232,20 +240,20 @@ function GameCard({ title, desc, icon, color, onClick }: any) {
   return (
     <button 
       onClick={onClick}
-      className={`relative p-8 rounded-[2.5rem] ${color} border-2 border-white/10 group overflow-hidden transition-all hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)]`}
+      className={`relative p-6 sm:p-8 rounded-3xl sm:rounded-[2.5rem] ${color} border-2 border-white/10 group overflow-hidden transition-all hover:shadow-[0_20px_40px_rgba(0,0,0,0.5)] active:scale-95`}
     >
       <div className="flex flex-col items-start relative z-10">
-        <div className="mb-6 p-4 bg-white/10 rounded-2xl group-hover:scale-110 group-hover:bg-white/20 transition-all">
+        <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-white/10 rounded-xl sm:rounded-2xl group-hover:scale-110 group-hover:bg-white/20 transition-all">
           {icon}
         </div>
-        <h4 className="text-3xl font-display font-black mb-1 italic">{title}</h4>
-        <p className="text-white/50 text-sm font-medium">{desc}</p>
+        <h4 className="text-xl sm:text-3xl font-display font-black mb-1 italic leading-tight text-left">{title}</h4>
+        <p className="text-white/50 text-xs sm:text-sm font-medium text-left">{desc}</p>
       </div>
-      <div className="absolute top-8 right-8 opacity-10 group-hover:opacity-20 transition-opacity">
+      <div className="absolute top-4 sm:top-8 right-4 sm:right-8 opacity-10 group-hover:opacity-20 transition-opacity">
         {icon}
       </div>
-      <div className="absolute right-6 bottom-6 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all">
-        <ChevronRight size={32} />
+      <div className="absolute right-4 sm:right-6 bottom-4 sm:bottom-6 md:translate-x-12 opacity-0 md:group-hover:translate-x-0 group-hover:opacity-100 transition-all">
+        <ChevronRight size={24} className="sm:w-8 sm:h-8" />
       </div>
     </button>
   );
@@ -253,10 +261,10 @@ function GameCard({ title, desc, icon, color, onClick }: any) {
 
 function Header({ label, onClose }: any) {
   return (
-    <div className="w-full flex items-center justify-between mb-8">
-      <h2 className="text-4xl font-display font-black uppercase tracking-tighter">{label}</h2>
-      <button onClick={onClose} className="p-3 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-colors">
-        <X size={24} />
+    <div className="w-full flex items-center justify-between mb-6 md:mb-8">
+      <h2 className="text-2xl sm:text-4xl font-display font-black uppercase tracking-tighter truncate pr-4">{label}</h2>
+      <button onClick={onClose} className="p-2.5 sm:p-3 bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl hover:bg-white/10 transition-colors shrink-0">
+        <X size={20} className="sm:w-6 sm:h-6" />
       </button>
     </div>
   );

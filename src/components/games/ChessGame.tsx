@@ -134,35 +134,35 @@ export const ChessGame: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8 p-4 lg:p-8 bg-[#0a0a1a] rounded-[3rem] border-2 border-cyan-500/10 backdrop-blur-3xl min-h-[700px] w-full max-w-6xl mx-auto overflow-hidden relative font-sans">
+    <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 p-4 lg:p-8 bg-[#0a0a1a] rounded-3xl lg:rounded-[3rem] border-2 border-cyan-500/10 backdrop-blur-3xl min-h-auto lg:min-h-[700px] w-full max-w-6xl mx-auto overflow-hidden relative font-sans">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent" />
       <div className="absolute -top-40 -left-40 w-96 h-96 bg-cyan-600/5 blur-[120px] rounded-full" />
       <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-purple-600/5 blur-[120px] rounded-full" />
 
       <div className="flex-1 flex flex-col items-center">
-        <header className="w-full flex justify-between items-center mb-8 px-2">
-          <div className="flex items-center gap-4">
-             <div className="w-12 h-12 bg-cyan-500/10 rounded-2xl border border-cyan-500/20 flex items-center justify-center">
-               <Brain className="text-cyan-400" size={24} />
+        <header className="w-full flex justify-between items-center mb-6 lg:mb-8 px-2">
+          <div className="flex items-center gap-3 lg:gap-4">
+             <div className="w-10 h-10 lg:w-12 lg:h-12 bg-cyan-500/10 rounded-xl lg:rounded-2xl border border-cyan-500/20 flex items-center justify-center shrink-0">
+               <Brain className="text-cyan-400 w-5 h-5 lg:w-6 lg:h-6" />
              </div>
              <div>
-               <h1 className="text-2xl font-black text-white tracking-tighter uppercase leading-none">Grandmaster Hub</h1>
+               <h1 className="text-lg lg:text-2xl font-black text-white tracking-tighter uppercase leading-none">Grandmaster Hub</h1>
                <div className="flex items-center gap-2 mt-1">
                  <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                 <span className="text-[10px] text-white/30 font-black uppercase tracking-widest">Neural Link Active</span>
+                 <span className="text-[8px] lg:text-[10px] text-white/30 font-black uppercase tracking-widest">Neural Link Active</span>
                </div>
              </div>
           </div>
           <button 
             onClick={resetGame}
-            className="group flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 transition-all active:scale-95"
+            className="group flex items-center gap-2 px-4 lg:px-6 py-2.5 lg:py-3 bg-white/5 hover:bg-white/10 rounded-xl lg:rounded-2xl border border-white/10 transition-all active:scale-95 shrink-0"
           >
-            <RefreshCcw size={18} className="text-cyan-400 group-hover:rotate-180 transition-transform duration-500" />
-            <span className="text-xs font-black text-white uppercase tracking-widest">Reboot Game</span>
+            <RefreshCcw size={14} className="text-cyan-400 group-hover:rotate-180 transition-transform duration-500" />
+            <span className="text-[10px] font-black text-white uppercase tracking-widest hidden sm:inline">Reboot</span>
           </button>
         </header>
 
-        <div className="w-full max-w-[540px] aspect-square relative group">
+        <div className="w-full max-w-[500px] aspect-square relative group">
            <div className="w-full h-full shadow-[0_0_80px_rgba(0,0,0,0.8)] rounded-xl overflow-hidden border-4 border-[#12122b]">
              <Chessboard 
                 {...{
@@ -181,23 +181,23 @@ export const ChessGame: React.FC = () => {
              {isGameOver && (
                <motion.div 
                  initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                 className="absolute inset-0 z-[60] bg-[#050515]/95 backdrop-blur-2xl flex flex-col items-center justify-center p-12 text-center"
+                 className="absolute inset-0 z-[60] bg-[#050515]/95 backdrop-blur-2xl flex flex-col items-center justify-center p-6 sm:p-12 text-center"
                >
                  <motion.div initial={{ scale: 0.8 }} animate={{ scale: 1 }} className="relative mb-8">
                    <div className="absolute inset-0 bg-cyan-400/20 blur-[60px] rounded-full" />
-                   <Trophy className="text-yellow-400 relative" size={120} />
+                   <Trophy className="text-yellow-400 relative" size={80} />
                  </motion.div>
                  
-                 <h2 className="text-5xl font-black text-white mb-4 italic tracking-tighter">
+                 <h2 className="text-3xl sm:text-5xl font-black text-white mb-4 italic tracking-tighter">
                    {winner === 'White' ? 'STUNNING WIN!' : winner === 'Draw' ? 'CLASH OF MINDS' : 'DEFEATED'}
                  </h2>
-                 <p className="text-cyan-400 font-bold tracking-[0.4em] uppercase mb-12 text-sm text-balance">
+                 <p className="text-cyan-400 font-bold tracking-[0.2em] sm:tracking-[0.4em] uppercase mb-10 sm:mb-12 text-[10px] sm:text-sm text-balance">
                    {winner === 'White' ? '+3,000 COINS DATA TRANSFERRED' : 'Tactical Stalemate Reached'}
                  </p>
 
                  <button 
                    onClick={resetGame}
-                   className="w-full max-w-sm py-6 bg-cyan-500 hover:bg-white text-black rounded-3xl font-black text-2xl transition-all shadow-[0_15px_40px_rgba(6,182,212,0.3)] active:scale-95"
+                   className="w-full max-w-sm py-4 sm:py-6 bg-cyan-500 hover:bg-white text-black rounded-2xl sm:rounded-3xl font-black text-lg sm:text-2xl transition-all shadow-[0_15px_40px_rgba(6,182,212,0.3)] active:scale-95"
                  >
                    REMATCH
                  </button>
@@ -207,30 +207,30 @@ export const ChessGame: React.FC = () => {
         </div>
       </div>
 
-      <aside className="w-full lg:w-96 flex flex-col gap-6">
-        <section className="bg-white/5 rounded-[2.5rem] p-8 border border-white/10 relative overflow-hidden">
-           <p className="text-[10px] font-black text-cyan-400 uppercase tracking-widest mb-8 flex items-center gap-2">
+      <aside className="w-full lg:w-96 flex flex-col gap-4 lg:gap-6">
+        <section className="bg-white/5 rounded-3xl lg:rounded-[2.5rem] p-6 lg:p-8 border border-white/10 relative overflow-hidden">
+           <p className="text-[10px] font-black text-cyan-400 uppercase tracking-widest mb-6 lg:mb-8 flex items-center gap-2">
              <History size={14} /> Processor Status
            </p>
 
-           <div className="flex items-center justify-between mb-10">
-              <div className={`flex flex-col items-center gap-3 transition-all duration-500 ${turn === 'w' ? 'scale-110 opacity-100' : 'opacity-30'}`}>
-                <div className="w-16 h-16 bg-white rounded-3xl flex items-center justify-center text-[#12122b] font-black text-2xl shadow-xl">W</div>
-                <span className="text-[10px] font-black text-white uppercase italic">Commander</span>
+           <div className="flex items-center justify-between mb-8 lg:mb-10">
+              <div className={`flex flex-col items-center gap-2 lg:gap-3 transition-all duration-500 ${turn === 'w' ? 'scale-110 opacity-100' : 'opacity-30'}`}>
+                <div className="w-12 h-12 lg:w-16 lg:h-16 bg-white rounded-2xl lg:rounded-3xl flex items-center justify-center text-[#12122b] font-black text-xl lg:text-2xl shadow-xl">W</div>
+                <span className="text-[8px] lg:text-[10px] font-black text-white uppercase italic">Commander</span>
               </div>
               
               <div className="flex-1 px-4">
                 <div className="h-0.5 w-full bg-white/10 rounded-full">
                    <motion.div 
                      animate={{ x: turn === 'w' ? '-10%' : '110%' }}
-                     className="h-full w-20 bg-cyan-400 shadow-[0_0_10px_#22d3ee] rounded-full"
+                     className="h-full w-12 lg:w-20 bg-cyan-400 shadow-[0_0_10px_#22d3ee] rounded-full"
                    />
                 </div>
               </div>
 
-              <div className={`flex flex-col items-center gap-3 transition-all duration-500 ${turn === 'b' ? 'scale-110 opacity-100' : 'opacity-30'}`}>
-                <div className="w-16 h-16 bg-slate-800 border border-white/20 rounded-3xl flex items-center justify-center text-white font-black text-2xl shadow-xl">B</div>
-                <span className="text-[10px] font-black text-white uppercase italic">AI Node 01</span>
+              <div className={`flex flex-col items-center gap-2 lg:gap-3 transition-all duration-500 ${turn === 'b' ? 'scale-110 opacity-100' : 'opacity-30'}`}>
+                <div className="w-12 h-12 lg:w-16 lg:h-16 bg-slate-800 border border-white/20 rounded-2xl lg:rounded-3xl flex items-center justify-center text-white font-black text-xl lg:text-2xl shadow-xl">B</div>
+                <span className="text-[8px] lg:text-[10px] font-black text-white uppercase italic">AI Node 01</span>
               </div>
            </div>
 
@@ -240,14 +240,14 @@ export const ChessGame: React.FC = () => {
            </div>
         </section>
 
-        <section className="bg-white/5 rounded-[2.5rem] p-8 border border-white/10">
+        <section className="bg-white/5 rounded-3xl lg:rounded-[2.5rem] p-6 lg:p-8 border border-white/10">
            <p className="text-[10px] font-black text-white/40 uppercase tracking-widest mb-6">Heuristic Engine</p>
            <div className="flex gap-4">
               {['easy', 'medium'].map((d) => (
                 <button 
                   key={d}
                   onClick={() => setDifficulty(d as any)}
-                  className={`flex-1 py-4 rounded-2xl font-black uppercase tracking-widest text-xs transition-all border-2
+                  className={`flex-1 py-3 lg:py-4 rounded-xl lg:rounded-2xl font-black uppercase tracking-widest text-[10px] lg:text-xs transition-all border-2
                     ${difficulty === d ? 'bg-cyan-500 border-cyan-400 text-black shadow-lg shadow-cyan-500/20' : 'bg-white/5 border-white/5 text-white/40 hover:bg-white/10'}`}
                 >
                   {d}
@@ -256,7 +256,7 @@ export const ChessGame: React.FC = () => {
            </div>
         </section>
 
-        <section className="flex-1 bg-white/5 rounded-[2.5rem] p-8 border border-white/10 overflow-hidden flex flex-col min-h-[160px]">
+        <section className="flex-1 bg-white/5 rounded-3xl lg:rounded-[2.5rem] p-6 lg:p-8 border border-white/10 overflow-hidden flex flex-col min-h-[160px]">
            <p className="text-[10px] font-black text-white/40 uppercase tracking-widest mb-6">Tactical Data Stream</p>
            <div className="flex flex-wrap gap-2 overflow-y-auto max-h-[140px] scrollbar-hide">
               {history.length === 0 && <span className="text-[10px] font-black text-white/10 uppercase italic">Awaiting first move...</span>}

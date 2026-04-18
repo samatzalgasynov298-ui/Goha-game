@@ -10,6 +10,7 @@ interface ItemImageProps {
 
 export const ItemImage: React.FC<ItemImageProps> = ({ src, alt, className, rarity }) => {
   const [error, setError] = useState(false);
+  const [retryWithImgPrefix, setRetryWithImgPrefix] = useState(false);
 
   // Generate a consistent color based on the name for the placeholder
   const getHashColor = (str: string) => {
@@ -21,6 +22,14 @@ export const ItemImage: React.FC<ItemImageProps> = ({ src, alt, className, rarit
     return '#' + '00000'.substring(0, 6 - c.length) + c;
   };
 
+  const handleError = () => {
+    if (!retryWithImgPrefix && !src.startsWith('/img/')) {
+      setRetryWithImgPrefix(true);
+    } else {
+      setError(true);
+    }
+  };
+
   if (error) {
     return (
       <div className={`${className} flex flex-col items-center justify-center bg-slate-800/50 border border-white/10 relative overflow-hidden group`}>
@@ -30,18 +39,24 @@ export const ItemImage: React.FC<ItemImageProps> = ({ src, alt, className, rarit
         />
         <User size={32} className="text-white/20 relative z-10" />
         <span className="text-[8px] font-black text-white/30 uppercase mt-2 relative z-10 px-2 text-center leading-tight">
-          Image Missing<br/>Upload to /public
+          Image Missing<br/>Check /public folder
         </span>
       </div>
     );
   }
 
+  // If initial load fails and it didn't have /img/, try adding it.
+  // If it had /img/ and failed, try removing it.
+  const finalSrc = retryWithImgPrefix 
+    ? (src.startsWith('/img/') ? src.replace('/img/', '/') : `/img${src}`)
+    : src;
+
   return (
     <img
-      src={src}
+      src={finalSrc}
       alt={alt}
       className={className}
-      onError={() => setError(true)}
+      onError={handleError}
       referrerPolicy="no-referrer"
     />
   );
