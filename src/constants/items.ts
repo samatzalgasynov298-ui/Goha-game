@@ -164,14 +164,6 @@ export const ITEMS_CONFIG: GameItem[] = [
   },
   { 
     id: 'item-20', 
-    name: 'L bald', 
-    image: '/img/L_bald.jpg', 
-    rarity: 'Rare', 
-    price: 800, 
-    sellPrice: 400 
-  },
-  { 
-    id: 'item-21', 
     name: 'Ricardo', 
     image: '/img/ricardo.jpg', 
     rarity: 'Rare', 
@@ -179,7 +171,7 @@ export const ITEMS_CONFIG: GameItem[] = [
     sellPrice: 400 
   },
   { 
-    id: 'item-22', 
+    id: 'item-21', 
     name: 'invincible', 
     image: '/img/invincible.jpg', 
     rarity: 'Rare', 
@@ -187,7 +179,7 @@ export const ITEMS_CONFIG: GameItem[] = [
     sellPrice: 400 
   },
   { 
-    id: 'item-23', 
+    id: 'item-22', 
     name: 'Саматпро228', 
     image: '/img/photo_2026-04-19_04-42-01Samat.jpg', 
     rarity: 'Legendary', 
