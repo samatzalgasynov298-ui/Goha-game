@@ -4,7 +4,6 @@ import { Trophy, Play, RotateCcw } from 'lucide-react';
 
 const COLS = 10;
 const ROWS = 20;
-const BLOCK_SIZE = 30;
 
 const TETROMINOS = {
   I: [[1, 1, 1, 1]],
@@ -29,9 +28,11 @@ const COLORS = {
 export const Tetris: React.FC = () => {
   const { addCoins } = useGame();
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [score, setScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [blockSize, setBlockSize] = useState(30);
 
   const grid = useRef<string[][]>(Array.from({ length: ROWS }, () => Array(COLS).fill('')));
   const currentPiece = useRef<{
@@ -131,7 +132,7 @@ export const Tetris: React.FC = () => {
       row.forEach((type, c) => {
         if (type) {
           ctx.fillStyle = COLORS[type as keyof typeof COLORS];
-          ctx.fillRect(c * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE - 1, BLOCK_SIZE - 1);
+          ctx.fillRect(c * blockSize, r * blockSize, blockSize - 1, blockSize - 1);
         }
       });
     });
@@ -143,15 +144,32 @@ export const Tetris: React.FC = () => {
         row.forEach((value, c) => {
           if (value) {
             ctx.fillRect(
-              (currentPiece.current!.pos.x + c) * BLOCK_SIZE,
-              (currentPiece.current!.pos.y + r) * BLOCK_SIZE,
-              BLOCK_SIZE - 1,
-              BLOCK_SIZE - 1
+              (currentPiece.current!.pos.x + c) * blockSize,
+              (currentPiece.current!.pos.y + r) * blockSize,
+              blockSize - 1,
+              blockSize - 1
             );
           }
         });
       });
     }
+  }, [blockSize]);
+
+  // Handle Resize for mobile
+  useEffect(() => {
+    const handleResize = () => {
+      if (containerRef.current) {
+        const width = containerRef.current.offsetWidth;
+        // Use container width to calculate block size, leaving space for margins
+        const availableWidth = Math.min(width - 40, 400); 
+        const newBlockSize = Math.floor(availableWidth / COLS);
+        setBlockSize(newBlockSize);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
@@ -186,44 +204,79 @@ export const Tetris: React.FC = () => {
   }, [isPlaying, draw]);
 
   return (
-    <div className="flex flex-col items-center bg-black/60 p-6 rounded-[2rem] border-2 border-pink-500/30">
-      <div className="flex justify-between w-full mb-4 px-2">
-        <div className="flex items-center gap-2">
-          <Trophy className="text-yellow-400" />
-          <span className="font-display font-black text-2xl">{score}</span>
+    <div ref={containerRef} className="flex flex-col items-center bg-black/60 p-4 md:p-8 rounded-3xl md:rounded-[3rem] border-2 border-pink-500/30 w-full max-w-lg mx-auto overflow-hidden">
+      <div className="flex justify-between w-full mb-6 px-2">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-yellow-400/10 rounded-xl border border-yellow-400/20 flex items-center justify-center">
+            <Trophy className="text-yellow-400" size={20} />
+          </div>
+          <div>
+            <span className="text-[10px] text-white/30 uppercase font-black block leading-none mb-1">Score Matrix</span>
+            <span className="font-display font-black text-2xl md:text-3xl leading-none">{score}</span>
+          </div>
         </div>
         <button 
           onClick={startGame}
-          className="p-2 bg-pink-600 rounded-xl hover:bg-pink-500 transition-colors"
+          className="w-12 h-12 bg-pink-600 rounded-xl hover:bg-pink-500 transition-all flex items-center justify-center shadow-[0_0_20px_rgba(236,72,153,0.3)] active:scale-95"
         >
-          {isPlaying ? <RotateCcw size={20} /> : <Play size={20} />}
+          {isPlaying ? <RotateCcw size={24} /> : <Play size={24} />}
         </button>
       </div>
 
-      <div className="relative border-4 border-white/20 rounded-xl overflow-hidden bg-slate-900 shadow-inner">
+      <div className="relative border-4 border-[#1e1e3f] rounded-2xl overflow-hidden bg-[#050515] shadow-[0_0_50px_rgba(0,0,0,0.5)]">
         <canvas 
           ref={canvasRef} 
-          width={COLS * BLOCK_SIZE} 
-          height={ROWS * BLOCK_SIZE}
+          width={COLS * blockSize} 
+          height={ROWS * blockSize}
           className="block"
         />
         
         {!isPlaying && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/70 backdrop-blur-sm">
-            <h2 className="text-4xl font-display font-black text-white mb-4">
-              {isGameOver ? 'GAME OVER' : 'TETRIS'}
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#050515]/80 backdrop-blur-md px-6 text-center">
+            <h2 className="text-4xl md:text-6xl font-display font-black text-white mb-2 italic tracking-tighter">
+              {isGameOver ? 'SYS ERROR' : 'TETRIS'}
             </h2>
+            <p className="text-pink-500 font-bold uppercase tracking-[0.3em] text-[10px] mb-8">
+              {isGameOver ? 'Core Overload Detected' : 'Neural Link Ready'}
+            </p>
             <button 
               onClick={startGame}
-              className="px-8 py-3 bg-pink-600 rounded-2xl font-black text-white shadow-lg shadow-pink-600/50 hover:scale-105 active:scale-95 transition-all"
+              className="px-10 py-4 bg-pink-600 rounded-2xl font-black text-white shadow-[0_15px_30px_rgba(236,72,153,0.4)] hover:scale-105 active:scale-95 transition-all text-xl"
             >
-              {isGameOver ? 'RETRY' : 'START GAME'}
+              {isGameOver ? 'REBOOT' : 'INITIALIZE'}
             </button>
           </div>
         )}
       </div>
 
-      <div className="mt-4 text-white/40 text-xs font-bold uppercase tracking-widest flex gap-4">
+      {/* Mobile Gamepad */}
+      <div className="mt-8 grid grid-cols-3 gap-3 w-full max-w-[280px]">
+        <div />
+        <ControlButton 
+          onClick={() => { rotate(); draw(); }} 
+          className="bg-white/10"
+          icon={<RotateCcw size={24} />}
+        />
+        <div />
+        
+        <ControlButton 
+          onClick={() => { move(-1, 0); draw(); }}
+          className="bg-white/5"
+          icon={<span className="text-2xl font-black">←</span>}
+        />
+        <ControlButton 
+          onClick={() => { move(0, 1); draw(); }}
+          className="bg-white/5"
+          icon={<span className="text-2xl font-black">↓</span>}
+        />
+        <ControlButton 
+          onClick={() => { move(1, 0); draw(); }}
+          className="bg-white/5"
+          icon={<span className="text-2xl font-black">→</span>}
+        />
+      </div>
+
+      <div className="mt-6 text-white/20 text-[8px] font-black uppercase tracking-[0.2em] hidden md:flex gap-6">
         <span>← → MOVE</span>
         <span>↑ ROTATE</span>
         <span>↓ SOFT DROP</span>
@@ -231,3 +284,15 @@ export const Tetris: React.FC = () => {
     </div>
   );
 };
+
+function ControlButton({ onClick, icon, className }: any) {
+  return (
+    <button 
+      onMouseDown={(e) => { e.preventDefault(); onClick(); }}
+      onTouchStart={(e) => { e.preventDefault(); onClick(); }}
+      className={`h-16 rounded-2xl border border-white/10 flex items-center justify-center transition-all active:scale-90 active:bg-white/20 ${className}`}
+    >
+      {icon}
+    </button>
+  );
+}
