@@ -139,7 +139,7 @@ export default function CatchGame({ onGameOver }: Props) {
         ctx.font = '32px Arial';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(isHeart ? '❤️' : '💣', item.x, item.y);
+        ctx.fillText(isHeart ? '❤️' : '💩', item.x, item.y);
         
         ctx.restore();
       });
