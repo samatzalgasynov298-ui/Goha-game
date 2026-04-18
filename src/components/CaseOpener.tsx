@@ -3,6 +3,7 @@ import { motion, useAnimation } from 'motion/react';
 import { ITEMS_CONFIG, CASE_PRICE, GameItem } from '../constants/items';
 import { useGame } from '../context/GameContext';
 import confetti from 'canvas-confetti';
+import { ItemImage } from './ui/ItemImage';
 import { Sparkles, Package } from 'lucide-react';
 
 export const CaseOpener: React.FC = () => {
@@ -99,7 +100,12 @@ export const CaseOpener: React.FC = () => {
                   item.rarity === 'Rare' ? 'border-purple-500 bg-purple-500/10' : 
                   'border-blue-400/30 bg-blue-400/5'}`}
             >
-              <img src={item.image} alt={item.name} className="w-16 h-16 rounded-lg object-cover mb-1" referrerPolicy="no-referrer" />
+              <ItemImage 
+                src={item.image} 
+                alt={item.name} 
+                className="w-16 h-16 rounded-lg object-cover mb-1"
+                rarity={item.rarity}
+              />
               <p className="text-[10px] font-bold text-center truncate w-full">{item.name}</p>
               <div className={`text-[8px] uppercase font-black px-1.5 py-0.5 rounded mt-1
                 ${item.rarity === 'Legendary' ? 'bg-yellow-400 text-black' : 
@@ -137,10 +143,21 @@ export const CaseOpener: React.FC = () => {
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-6 text-center"
+          className="mt-6 flex flex-col items-center"
         >
-          <p className="text-white/60 mb-1">You won:</p>
-          <p className={`text-2xl font-display font-black uppercase
+          <p className="text-white/60 mb-3">You won:</p>
+          <div className={`p-1 rounded-2xl bg-gradient-to-b mb-4
+            ${reward.rarity === 'Legendary' ? 'from-yellow-400 to-yellow-600' : 
+              reward.rarity === 'Rare' ? 'from-purple-400 to-purple-600' : 'from-blue-400 to-blue-600'}`}
+          >
+            <ItemImage 
+              src={reward.image} 
+              alt={reward.name} 
+              className="w-32 h-32 rounded-xl object-cover shadow-2xl"
+              rarity={reward.rarity}
+            />
+          </div>
+          <p className={`text-4xl font-display font-black uppercase tracking-tighter
             ${reward.rarity === 'Legendary' ? 'text-yellow-400' : 
               reward.rarity === 'Rare' ? 'text-purple-400' : 'text-blue-400'}`}
           >

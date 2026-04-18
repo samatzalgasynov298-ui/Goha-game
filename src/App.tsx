@@ -19,6 +19,7 @@ import { Durak } from './components/games/Durak';
 import { ChessGame } from './components/games/ChessGame';
 import CatchGame from './components/CatchGame';
 import FlappyGame from './components/FlappyGame';
+import { ItemImage } from './components/ui/ItemImage';
 
 type View = 'hub' | 'flappy' | 'catch' | 'tetris' | 'uno' | 'durak' | 'chess' | 'inventory' | 'case';
 
@@ -173,7 +174,12 @@ export default function App() {
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                 {inventory.length > 0 ? inventory.map((item, i) => (
                   <div key={i} className="glass-panel p-3 flex flex-col items-center border-white/5 group relative overflow-hidden">
-                    <img src={item.image} className="w-full aspect-square rounded-xl object-cover mb-2" referrerPolicy="no-referrer" />
+                    <ItemImage 
+                      src={item.image} 
+                      alt={item.name} 
+                      className="w-full aspect-square rounded-xl object-cover mb-2" 
+                      rarity={item.rarity}
+                    />
                     <p className="text-[10px] font-bold text-center truncate w-full">{item.name}</p>
                     <span className={`text-[8px] font-black px-1.5 py-0.5 rounded mt-1 mb-2
                       ${item.rarity === 'Legendary' ? 'bg-yellow-400 text-black' : 
