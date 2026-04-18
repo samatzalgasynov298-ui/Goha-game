@@ -189,7 +189,7 @@ export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-22', 
     name: 'Саматпро228', 
-    image: '/img/photo_2026-04-18_05-19-34Samat.jpg', 
+    image: '/img/photo_2026-04-19_04-42-01Samat.jpg', 
     rarity: 'Legendary', 
     price: 5000, 
     sellPrice: 2500 
