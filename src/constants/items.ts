@@ -164,8 +164,8 @@ export const ITEMS_CONFIG: GameItem[] = [
   },
   { 
     id: 'item-20', 
-    name: 'Ratatouille ', 
-    image: '/img/remi ratatui.jpg', 
+    name: 'L bald', 
+    image: '/img/L bald.jpg', 
     rarity: 'Rare', 
     price: 800, 
     sellPrice: 400 
