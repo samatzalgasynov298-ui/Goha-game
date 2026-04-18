@@ -12,8 +12,8 @@ export interface GameItem {
 export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-1', 
-    name: 'Теодор', 
-    image: '/img/photo_baha.jpg', 
+    name: 'Baha', 
+    image: '/public/photo_baha.jpg', 
     rarity: 'Common', 
     price: 150, 
     sellPrice: 75 
@@ -21,23 +21,23 @@ export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-2', 
     name: 'Gyro', 
-    image: '/img/gyro.jpg', 
+    image: '/photo_baha.jpg', 
     rarity: 'Common', 
     price: 150, 
     sellPrice: 75 
   },
   { 
     id: 'item-3', 
-    name: 'Invincible', 
-    image: '/img/invincible.jpg', 
+    name: '67676767', 
+    image: '/67.jpg', 
     rarity: 'Common', 
     price: 150, 
     sellPrice: 75 
   },
   { 
     id: 'item-4', 
-    name: 'Steve', 
-    image: '/img/steve.jpg', 
+    name: 'Choso', 
+    image: '/chosojjk.jpg', 
     rarity: 'Common', 
     price: 150, 
     sellPrice: 75 
@@ -45,7 +45,7 @@ export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-5', 
     name: 'Ronaldo', 
-    image: '/img/ronaldo.jpg', 
+    image: '/ronaldo.jpg', 
     rarity: 'Common', 
     price: 150, 
     sellPrice: 75 
@@ -53,7 +53,7 @@ export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-6', 
     name: 'Ellie', 
-    image: '/img/peter.jpg', 
+    image: '/Ellie.jpg', 
     rarity: 'Common', 
     price: 150, 
     sellPrice: 75 
@@ -61,7 +61,7 @@ export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-7', 
     name: 'Fang', 
-    image: '/img/fang.jpg', 
+    image: '/fang.jpg', 
     rarity: 'Common', 
     price: 150, 
     sellPrice: 75 
@@ -69,7 +69,7 @@ export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-8', 
     name: 'Johny', 
-    image: '/img/johny.jpg', 
+    image: '/johny.jpg', 
     rarity: 'Common', 
     price: 150, 
     sellPrice: 75 
@@ -77,31 +77,31 @@ export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-9', 
     name: 'Ronaldo Kiss', 
-    image: '/img/ronaldo kiss.jpg', 
+    image: '/ronaldo kiss.jpg', 
     rarity: 'Common', 
     price: 150, 
     sellPrice: 75 
   },
   { 
     id: 'item-10', 
-    name: 'Steve Harrington', 
-    image: '/img/steve.jpg', 
+    name: 'SteveHarrington', 
+    image: '/steve.jpg', 
     rarity: 'Common', 
     price: 150, 
     sellPrice: 75 
   },
   { 
     id: 'item-11', 
-    name: 'Levi', 
-    image: '/img/levi bald.jpg', 
+    name: 'L', 
+    image: '/L bald.jpg', 
     rarity: 'Common', 
     price: 150, 
     sellPrice: 75 
   },
   { 
     id: 'item-12', 
-    name: 'Ratatouille', 
-    image: '/img/remi ratatui.jpg', 
+    name: 'Красавчик', 
+    image: '/levi bald.jpg', 
     rarity: 'Common', 
     price: 150, 
     sellPrice: 75 
@@ -109,7 +109,7 @@ export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-13', 
     name: 'LilUziVert', 
-    image: '/img/liluzi.jpg', 
+    image: '/liluzi.jpg', 
     rarity: 'Rare', 
     price: 800, 
     sellPrice: 400 
@@ -117,7 +117,7 @@ export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-14', 
     name: 'Masuka', 
-    image: '/img/masuka.jpg', 
+    image: '/masuka.jpg', 
     rarity: 'Rare', 
     price: 800, 
     sellPrice: 400 
@@ -125,15 +125,15 @@ export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-15', 
     name: 'Your Dream', 
-    image: '/img/melodie.jpg', 
+    image: '/melodie.jpg', 
     rarity: 'Rare', 
     price: 800, 
     sellPrice: 400 
   },
   { 
     id: 'item-16', 
-    name: 'Misa', 
-    image: '/img/misa.jpg', 
+    name: 'Красотка', 
+    image: '/misa.jpg', 
     rarity: 'Rare', 
     price: 800, 
     sellPrice: 400 
@@ -141,7 +141,7 @@ export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-17', 
     name: 'Morgenshtern', 
-    image: '/img/morgen.jpg', 
+    image: '/morgen.jpg', 
     rarity: 'Rare', 
     price: 800, 
     sellPrice: 400 
@@ -149,7 +149,7 @@ export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-18', 
     name: 'Патрик', 
-    image: '/img/patrik.jpg', 
+    image: '/patrik.jpg', 
     rarity: 'Rare', 
     price: 1500, 
     sellPrice: 750 
@@ -157,23 +157,23 @@ export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-19', 
     name: 'Peter', 
-    image: '/img/peter.jpg', 
+    image: '/peter.jpg', 
     rarity: 'Rare', 
     price: 800, 
     sellPrice: 400 
   },
   { 
     id: 'item-20', 
-    name: 'Ratatouille 2', 
-    image: '/img/remi ratatui.jpg', 
+    name: 'Рататуй', 
+    image: '/remi ratatui.jpg', 
     rarity: 'Rare', 
     price: 800, 
     sellPrice: 400 
   },
   { 
     id: 'item-21', 
-    name: 'Ricardo', 
-    image: '/img/ricardo.jpg', 
+    name: 'Ричард', 
+    image: '/ricardo.jpg', 
     rarity: 'Rare', 
     price: 800, 
     sellPrice: 400 
@@ -181,7 +181,7 @@ export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-22', 
     name: 'Саматпро228', 
-    image: '/img/photo_2026-04-18_05-19-34Samat.jpg', 
+    image: '/photo_2026-04-18_05-19-34.jpg', 
     rarity: 'Legendary', 
     price: 5000, 
     sellPrice: 2500 
