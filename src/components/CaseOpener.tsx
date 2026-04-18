@@ -3,6 +3,7 @@ import { motion, useAnimation } from 'motion/react';
 import { ITEMS_CONFIG, CASE_PRICE, GameItem } from '../constants/items';
 import { useGame } from '../context/GameContext';
 import confetti from 'canvas-confetti';
+import { ItemImage } from './ui/ItemImage';
 import { Sparkles, Package } from 'lucide-react';
 
 export const CaseOpener: React.FC = () => {
@@ -15,8 +16,7 @@ export const CaseOpener: React.FC = () => {
   // Generate a long list of items for the roulette
   const [rouletteItems, setRouletteItems] = useState<GameItem[]>([]);
 
-  const CARD_WIDTH = 110;
-  const GAP = 8; // gap-2 = 0.5rem = 8px
+  const GAP = 8; 
   const VISIBLE_ITEMS = 60;
 
   const spin = async () => {
@@ -25,6 +25,9 @@ export const CaseOpener: React.FC = () => {
     removeCoins(CASE_PRICE);
     setIsSpinning(true);
     setReward(null);
+
+    // Dynamic width based on screen size (matching Tailwind classes)
+    const cardWidth = window.innerWidth < 640 ? 90 : 110;
 
     // Build roulette list
     const commonItems = ITEMS_CONFIG.filter(i => i.rarity === 'Common');
@@ -47,18 +50,8 @@ export const CaseOpener: React.FC = () => {
     // Animation
     await controls.set({ x: 0 });
     
-    const containerWidth = containerRef.current?.offsetWidth || 500;
     // Calculate exact center position
-    // First item starts at (containerWidth / 2) because of px-[50%]
-    // To center targetIndex-th item:
-    // its start position relative to list start is (targetIndex * (CARD_WIDTH + GAP))
-    // we want its center (pos + CARD_WIDTH/2) to be at containerWidth/2
-    // but the list itself is already offset by +containerWidth/2 because of px-[50%]
-    // so list_start_pos + item_offset_in_list + CARD_WIDTH/2 = containerWidth/2
-    // Since list_start_pos is containerWidth/2 at x=0
-    // x + containerWidth/2 + item_offset_in_list + CARD_WIDTH/2 = containerWidth/2
-    // x = -(item_offset_in_list + CARD_WIDTH/2)
-    const targetX = -(targetIndex * (CARD_WIDTH + GAP) + CARD_WIDTH / 2);
+    const targetX = -(targetIndex * (cardWidth + GAP) + cardWidth / 2);
     
     await controls.start({
       x: targetX,
@@ -83,7 +76,7 @@ export const CaseOpener: React.FC = () => {
     <div className="w-full flex flex-col items-center">
       <div 
         ref={containerRef}
-        className="relative w-full max-w-[500px] h-[160px] bg-black/40 border-2 border-pink-500/30 rounded-3xl overflow-hidden mb-6 flex items-center"
+        className="relative w-full max-w-[500px] h-[130px] sm:h-[160px] bg-black/40 border-2 border-pink-500/30 rounded-2xl sm:rounded-3xl overflow-hidden mb-6 flex items-center"
       >        <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1 bg-pink-500 z-10 shadow-[0_0_15px_rgba(236,72,153,0.8)]" />
         
         <motion.div 
@@ -94,13 +87,18 @@ export const CaseOpener: React.FC = () => {
           {rouletteItems.map((item, i) => (
             <div 
               key={i} 
-              className={`flex-shrink-0 w-[110px] h-[130px] rounded-2xl border-2 flex flex-col items-center justify-center p-2
+              className={`flex-shrink-0 w-[90px] h-[110px] sm:w-[110px] sm:h-[130px] rounded-xl sm:rounded-2xl border-2 flex flex-col items-center justify-center p-2
                 ${item.rarity === 'Legendary' ? 'border-yellow-400 bg-yellow-400/10' : 
                   item.rarity === 'Rare' ? 'border-purple-500 bg-purple-500/10' : 
                   'border-blue-400/30 bg-blue-400/5'}`}
             >
-              <img src={item.image} alt={item.name} className="w-16 h-16 rounded-lg object-cover mb-1" referrerPolicy="no-referrer" />
-              <p className="text-[10px] font-bold text-center truncate w-full">{item.name}</p>
+              <ItemImage 
+                src={item.image} 
+                alt={item.name} 
+                className="w-12 h-12 sm:w-16 sm:h-16 rounded-lg object-cover mb-1 shrink-0"
+                rarity={item.rarity}
+              />
+              <p className="text-[8px] sm:text-[10px] font-bold text-center truncate w-full">{item.name}</p>
               <div className={`text-[8px] uppercase font-black px-1.5 py-0.5 rounded mt-1
                 ${item.rarity === 'Legendary' ? 'bg-yellow-400 text-black' : 
                   item.rarity === 'Rare' ? 'bg-purple-500 text-white' : 
@@ -123,10 +121,10 @@ export const CaseOpener: React.FC = () => {
       <button 
         onClick={spin}
         disabled={isSpinning || coins < CASE_PRICE}
-        className={`group relative flex items-center justify-center gap-3 px-10 py-4 rounded-2xl font-black text-xl overflow-hidden transition-all active:scale-95
+        className={`group relative flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-10 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl font-black text-base sm:text-xl overflow-hidden transition-all active:scale-95
           ${coins < CASE_PRICE ? 'bg-slate-700 text-white/30 cursor-not-allowed' : 'bg-pink-600 text-white hover:bg-pink-500'}`}
       >
-        <Sparkles className={isSpinning ? 'animate-spin' : ''} />
+        <Sparkles size={18} className={`sm:w-6 sm:h-6 ${isSpinning ? 'animate-spin' : ''}`} />
         {isSpinning ? 'SPINNING...' : `OPEN CASE (${CASE_PRICE} 🪙)`}
         
         {/* Glow effect */}
@@ -137,10 +135,21 @@ export const CaseOpener: React.FC = () => {
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-6 text-center"
+          className="mt-6 flex flex-col items-center"
         >
-          <p className="text-white/60 mb-1">You won:</p>
-          <p className={`text-2xl font-display font-black uppercase
+          <p className="text-white/60 mb-2 sm:mb-3 text-sm">You won:</p>
+          <div className={`p-1 rounded-xl sm:rounded-2xl bg-gradient-to-b mb-3 sm:mb-4
+            ${reward.rarity === 'Legendary' ? 'from-yellow-400 to-yellow-600' : 
+              reward.rarity === 'Rare' ? 'from-purple-400 to-purple-600' : 'from-blue-400 to-blue-600'}`}
+          >
+            <ItemImage 
+              src={reward.image} 
+              alt={reward.name} 
+              className="w-24 h-24 sm:w-32 sm:h-32 rounded-lg sm:rounded-xl object-cover shadow-2xl"
+              rarity={reward.rarity}
+            />
+          </div>
+          <p className={`text-2xl sm:text-4xl font-display font-black uppercase tracking-tighter text-center
             ${reward.rarity === 'Legendary' ? 'text-yellow-400' : 
               reward.rarity === 'Rare' ? 'text-purple-400' : 'text-blue-400'}`}
           >
