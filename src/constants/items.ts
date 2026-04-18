@@ -13,7 +13,7 @@ export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-1', 
     name: 'Теодор', 
-    image: '/img/photo_baha.jpg', 
+    image: '/img/photo_baga.jpg', 
     rarity: 'Common', 
     price: 150, 
     sellPrice: 75 
