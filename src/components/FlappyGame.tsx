@@ -39,7 +39,7 @@ export default function FlappyGame({ onGameOver }: Props) {
   useEffect(() => {
     const img = new Image();
     // Use the specific image requested by user
-    img.src = '/goha-removebg-preview.png';
+    img.src = '/img/goha-removebg-preview.png';
     img.onerror = () => {
       // Fallback if image not found
       birdImg.current = null;
