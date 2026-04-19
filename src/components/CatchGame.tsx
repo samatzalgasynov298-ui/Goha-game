@@ -28,7 +28,7 @@ export default function CatchGame({ onGameOver }: Props) {
   useEffect(() => {
     const img = new Image();
     // Use the specific image requested by user
-    img.src = '/goha-removebg-preview.png';
+    img.src = '/img/goha-removebg-preview.png';
     img.onerror = () => { birdImg.current = null; };
     img.onload = () => { birdImg.current = img; };
   }, []);
@@ -139,7 +139,7 @@ export default function CatchGame({ onGameOver }: Props) {
         ctx.font = '32px Arial';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(isHeart ? '❤️' : '💣', item.x, item.y);
+        ctx.fillText(isHeart ? '❤️' : '💩', item.x, item.y);
         
         ctx.restore();
       });
@@ -157,7 +157,7 @@ export default function CatchGame({ onGameOver }: Props) {
         ctx.fill();
         ctx.font = '40px Arial';
         ctx.textAlign = 'center';
-        ctx.fillText('🐱', catcherX.current + CATCHER_WIDTH/2, 555);
+        ctx.fillText('img', catcherX.current + CATCHER_WIDTH/2, 555);
       }
       ctx.restore();
 
