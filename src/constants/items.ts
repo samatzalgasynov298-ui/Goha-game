@@ -189,7 +189,7 @@ export const ITEMS_CONFIG: GameItem[] = [
    { 
     id: 'item-23', 
     name: 'MARS', 
-    image: '/img/.jpg', 
+    image: '/img/mars.jpg', 
     rarity: 'Rare', 
     price: 800, 
     sellPrice: 400 
