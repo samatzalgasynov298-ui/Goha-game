@@ -12,8 +12,8 @@ export interface GameItem {
 export const ITEMS_CONFIG: GameItem[] = [
   { 
     id: 'item-1', 
-    name: 'Baha', 
-    image: '/img/photo_baha.jpg', 
+    name: 'Invincible', 
+    image: '/img/invincible.jpg', 
     rarity: 'Common', 
     price: 150, 
     sellPrice: 75 
@@ -172,14 +172,22 @@ export const ITEMS_CONFIG: GameItem[] = [
   },
   { 
     id: 'item-21', 
-    name: 'invincible', 
-    image: '/img/invincible.jpg', 
+    name: 'Рыся', 
+    image: '/img/Yrys.jpg', 
     rarity: 'Rare', 
     price: 800, 
     sellPrice: 400 
   },
   { 
     id: 'item-22', 
+    name: 'Baha', 
+    image: '/img/photo_baha.jpg', 
+    rarity: 'Rare', 
+    price: 800, 
+    sellPrice: 400 
+  },
+  { 
+    id: 'item-23', 
     name: 'Саматпро228', 
     image: '/img/photo_2026-04-19_04-42-01Samat.jpg', 
     rarity: 'Legendary', 
